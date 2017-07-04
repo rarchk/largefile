@@ -1,0 +1,10 @@
+func downloadFromSlowSource()
+{
+
+}
+
+func copyPeerToPeer()
+{
+
+}
+
