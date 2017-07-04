@@ -1,10 +1,15 @@
-func downloadFromSlowSource()
+function downloadFromSlowSource ()
 {
-
+	timestamp=$((RANDOM%7))
+	sleep $timestamp
+	return $timestamp
 }
 
-func copyPeerToPeer()
+function copyPeerToPeer ()
 {
-
+	downloadFromSlowSource
+	local var=$? 
+	echo "Copying took $var sec time"
+	cp $1 $2
 }
 
