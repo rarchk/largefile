@@ -9,7 +9,7 @@ function compute_average_time ()
 		local var=$?
 		avg=$((avg + var));
 	done
-	avg=$((avg/5 * $npartitons))
+	avg=$((avg/5 * $npartitons / $parallel_channels))
 	return $avg
 }
 
@@ -32,7 +32,7 @@ function linear_distribution ()
 
 	compute_average_time
 	avg=$?
-	max=$(($random_max * $npartitons)) 
+	max=$(($random_max * $npartitons / $parallel_channels)) 
 	
 	echo "With present linear algorithm of distribution, it will take on average of $avg sec and maximum of $max sec of time" 
 	echo "=================================================" 
