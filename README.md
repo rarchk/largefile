@@ -17,4 +17,11 @@ We need to design a programmable controller with configurable parameters which a
 
 ## Key componenets of system 
 - A dictionary/mbr file which keeps track of all the distributed records. 
-- ncurses or other library for intreactive nature and visuals 
+- pv for intreactive nature and visuals 
+
+## Dependency 
+- `sudo apt-get install pv`
+
+```bash 
+source controller.sh largefile
+```

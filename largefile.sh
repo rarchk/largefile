@@ -1,6 +1,6 @@
 function downloadFromSlowSource ()
 {
-	timestamp=$((RANDOM%7))
+	timestamp=$((RANDOM%9))
 	sleep $timestamp
 	return $timestamp
 }
@@ -9,7 +9,7 @@ function copyPeerToPeer ()
 {
 	downloadFromSlowSource
 	local var=$? 
-	echo "Copying took $var sec time"
-	cp $1 $2
+	echo "Transferring file $1 to node $2 takes $var sec time"
+	pv $1 > $2/$1
 }
 

@@ -1,3 +1,3 @@
 chunk_size=128
-cluster_prefix="thoughtspot"
+cluster_prefix="thoughtspot_"
 log_file="app.log"
