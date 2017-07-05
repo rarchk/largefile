@@ -15,9 +15,10 @@ function compute_average_time ()
 
 function node_work ()
 {
-	mkdir "$cluster_prefix$i"
-	partition_file=$(awk 'NR == n' n=$i cluster_partitions.txt | cut -d "'" -f2)
-	copyPeerToPeer $partition_file $cluster_prefix$i;
+	index=$1
+	mkdir "$cluster_prefix$index"
+	partition_file=$(awk 'NR == n' n=$index cluster_partitions.txt | cut -d "'" -f2)
+	copyPeerToPeer $partition_file $cluster_prefix$index;
 }
 
 function linear_distribution ()
@@ -41,15 +42,15 @@ function linear_distribution ()
 	echo "=================================================" 
 	echo
 
-	for i in $(seq 1 $npartitons);
+	for i in $(seq 1 $parallel_channels $npartitons);
 	do
-		if [ "$parallel_flag" -eq 1 ]; then
-   			node_work &
-   		else 
-   			node_work
-		fi	
+		for j in $(seq 1 $parallel_channels);
+		do
+			node_work $(($i + $j - 1)) &
+		done	
+   		wait		
 	done
-	wait
+	
 
 	echo 
 	echo "Done!" 
