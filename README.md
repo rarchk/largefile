@@ -4,11 +4,14 @@ Large File
 Distributed design experiment on maintaining large file distribution over cluster of machines. 
 
 ## Usage 
-### Dependency  
-`sudo apt-get install pv`
+```bash
+# Create large file
+dd if=/dev/zero of=file2 bs=4096 count=524288
 
-### Run 
-```bash 
+# Dependency
+sudo apt-get install pv
+
+# Run 
 source controller.sh `largefile_name`
 ```
 ## Design Schema

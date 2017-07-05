@@ -19,6 +19,7 @@ function node_work ()
 	partition_file=$(awk 'NR == n' n=$i cluster_partitions.txt | cut -d "'" -f2)
 	copyPeerToPeer $partition_file $cluster_prefix$i;
 }
+
 function linear_distribution ()
 {
 	split $1 -b $chunk_size $cluster_prefix  --verbose > cluster_partitions.txt 
@@ -50,14 +51,10 @@ function linear_distribution ()
 	done
 	wait
 
-
-
 	echo 
 	echo "Done!" 
 	echo "=================================================" 
 	echo 	
-
-
 } 
 
 # Importing functional abstractions 
