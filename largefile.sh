@@ -9,9 +9,9 @@ function copyPeerToPeer ()
 {
 	downloadFromSlowSource
 	local var=$? 
-	echo "Transferring file $1 to node $2 takes $var sec time" | tee $log_file
+	echo "Transferring file $1 to node $2 takes $var sec time" 
 	echo 
-	pv $1 > $2/$1 | tee $log_file
+	pv $1 > $2/$1 
 	rm $1
 }
 

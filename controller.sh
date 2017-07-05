@@ -42,8 +42,15 @@ function linear_distribution ()
 
 	for i in $(seq 1 $npartitons);
 	do
-		node_work;
+		if [ "$parallel_flag" -eq 1 ]; then
+   			node_work &
+   		else 
+   			node_work
+		fi	
 	done
+	wait
+
+
 
 	echo 
 	echo "Done!" 
@@ -62,5 +69,5 @@ source parameters.sh
 # Name of large file 
 file_name=$1
 
-linear_distribution $file_name 
+linear_distribution $file_name | tee -a $log_file
 
