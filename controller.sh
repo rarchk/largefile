@@ -25,8 +25,8 @@ function linear_distribution ()
 {
 	split $1 -b $chunk_size $cluster_prefix  --verbose > cluster_partitions.txt 
 	npartitons=$(cat cluster_partitions.txt | wc -l)
-	
-	echo "This large file '$1' need to be stored in $npartitons nodes"
+		
+	echo "This large file '$1' need to be stored in $npartitons nodes by master '$2'"
 	echo "================================================="
 	echo 
 
@@ -50,7 +50,6 @@ function linear_distribution ()
 		done	
    		wait		
 	done
-	
 
 	echo 
 	echo "Done!" 
@@ -67,5 +66,7 @@ source parameters.sh
 # Name of large file 
 file_name=$1
 
-linear_distribution $file_name | tee -a $log_file
+# Distribution 
+
+linear_distribution $file_name 0 | tee -a $log_file
 
